@@ -10,7 +10,7 @@ The current list of programs and their descriptions can be found below:
 
 A basic program that could be used as a reaction animation when Artie is excited.
 
-2) Shape Randomizer
+2) Random Shapes
 
 Randomly draws shapes from a predetermined library in uniform pattern. Length of drawing, 
 which shapes are drawn, and size of grid can all be changed by the user. 
