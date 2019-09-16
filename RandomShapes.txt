@@ -1,0 +1,160 @@
+#Code For Random Shapes
+
+#Import and Declarations ------------------------------------------
+
+#Import Artie Module
+
+from artie import Artie
+
+artie = Artie()
+
+#Import Random
+import random
+
+
+#Global Variables ----------------------------------------------------
+
+fwdDistance = 20
+sqSideLength = 30
+loopRange = 10
+
+#Definitions --------------------------------------------------------------
+
+#Shape Definitions
+def drawSquare():
+    for i in range(4):
+        artie.pendown()
+        artie.forward(sqSideLength)
+        artie.penup()
+        artie.right(90)
+        
+
+def drawTriangle():
+    for i in range (3):
+        artie.pendown()
+        artie.forward(sqSideLength)
+        artie.penup()
+        artie.right(120)
+
+
+def drawCircle():
+    for i in range (10):
+        artie.pendown()
+        artie.forward(10)
+        artie.penup()
+        artie.right(36)
+        
+def drawSlash():
+    artie.pendown()
+    artie.right(30)
+    artie.forward(10)
+    artie.right(120)
+    artie.forward(10)
+    
+
+#Draw Loop Definition
+
+def drawLoop():
+    
+    #Put Pen Down
+    #artie.pendown()
+    
+    #Shape Loop
+    i = 0
+    
+    for i in range(loopRange):
+        currentShape = random.randrange(1,4,1)
+       
+        print("Shape: " + str(currentShape))
+        
+        if currentShape == 1:
+            drawSquare()
+            i += 1
+            artie.forward(fwdDistance+sqSideLength)
+            print("Current Step: " + str(i))
+            
+        if currentShape == 2:
+            drawTriangle()
+            i += 1
+            artie.forward(fwdDistance+sqSideLength)
+            print("Current Step: " + str(i))
+            
+        if currentShape == 3:
+            drawCircle()
+            i += 1
+            artie.forward(fwdDistance+sqSideLength)
+            print("Current Step: " + str(i))
+        
+        
+    #Pick Pen UP
+    #artie.penup()
+    artie.forward(100)
+    
+#Active Code Set Control --------------------------------------------------------------------------------    
+
+#Turn On Code
+codeSet = 4         
+
+#Code Set 1: Call Draw Loop
+if codeSet == 1:
+    drawLoop()
+
+#Code Set 2: Reset Pen To Up
+if codeSet == 2:
+    artie.penup()
+    print("Pen Up")
+
+#Code Set 3: Test Shapes
+if codeSet == 3:
+    artie.pendown()
+    print("Pen Down")
+
+#Code Set 4: Test Shapes
+if codeSet == 4:
+    
+    sqSideLength = 20
+    loopRange = 3
+    
+    t = 0
+    direction = 1
+    while t < loopRange:
+        currentShape = random.choice([1,2])
+        #currentShape = 1
+        #Shapes
+        if t > 0:
+            artie.forward(sqSideLength + 10)
+        if currentShape == 1:
+            drawSquare()
+            t += 1
+            print("Step: " + str(t) + " complete!")
+        if currentShape == 2:
+            drawTriangle()
+            t += 1
+            print("Step: " + str(t) + " complete!")
+        if currentShape == 3:
+            drawCircle()
+            t += 1
+            print("Step: " + str(t) + " complete!")
+
+            
+        #Turning Function    
+            
+        if t == loopRange and direction == 1:
+            artie.forward(sqSideLength)
+            artie.left(90)
+            artie.forward(10)
+            artie.left(90)
+            t = 0
+            direction = 2
+            print(t)
+            
+        if t == loopRange and direction == 2:
+            
+            artie.right(90)
+            artie.forward((sqSideLength * 2) + 10)
+            artie.left(90)
+            artie.forward(sqSideLength)
+            artie.left(180)
+            
+            t = 0
+            direction = 1
